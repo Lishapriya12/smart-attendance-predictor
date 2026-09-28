@@ -1,0 +1,168 @@
+{
+  "section_id": "section_D",
+  "section_name": "Section D",
+  "department": "Information Technology",
+  "year": "2nd Year",
+  "semester": "3rd Semester",
+  "subjects": [
+    {
+      "code": "IT301",
+      "name": "Data Structures & Algos",
+      "short_name": "DSA",
+      "faculty": "Dr. Robert Sedgewick"
+    },
+    {
+      "code": "IT302",
+      "name": "Digital Systems",
+      "short_name": "Digital Sys",
+      "faculty": "Prof. Morris Mano"
+    },
+    {
+      "code": "IT303",
+      "name": "Probability & Statistics",
+      "short_name": "Prob & Stat",
+      "faculty": "Dr. Andrey Kolmogorov"
+    },
+    {
+      "code": "IT304",
+      "name": "Object Oriented Programming",
+      "short_name": "OOP",
+      "faculty": "Prof. James Gosling"
+    },
+    {
+      "code": "IT305",
+      "name": "Web Basics",
+      "short_name": "Web Dev",
+      "faculty": "Dr. H\u00e5kon Wium Lie"
+    }
+  ],
+  "timetable": {
+    "Monday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "IT301"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "IT302"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "IT303"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "IT304"
+      }
+    ],
+    "Tuesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "IT302"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "IT303"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "IT305"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "IT301"
+      }
+    ],
+    "Wednesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "IT304"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "IT305"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "IT301"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "IT302"
+      }
+    ],
+    "Thursday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "IT303"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "IT301"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "IT304"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "IT305"
+      }
+    ],
+    "Friday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "IT305"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "IT304"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "IT302"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "IT303"
+      }
+    ],
+    "Saturday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "IT301"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "IT304"
+      }
+    ]
+  },
+  "holidays": [
+    "2026-10-02",
+    "2026-10-20",
+    "2026-11-01"
+  ]
+}

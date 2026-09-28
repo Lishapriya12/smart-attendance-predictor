@@ -1,0 +1,168 @@
+{
+  "section_id": "section_E",
+  "section_name": "Section E",
+  "department": "Electronics & Communication",
+  "year": "3rd Year",
+  "semester": "5th Semester",
+  "subjects": [
+    {
+      "code": "EC501",
+      "name": "Signals & Systems",
+      "short_name": "Signals",
+      "faculty": "Dr. Alan Oppenheim"
+    },
+    {
+      "code": "EC502",
+      "name": "Analog Communication",
+      "short_name": "Analog Comm",
+      "faculty": "Prof. Simon Haykin"
+    },
+    {
+      "code": "EC503",
+      "name": "Microprocessors & Microcontrollers",
+      "short_name": "MPMC",
+      "faculty": "Dr. Ramesh Gaonkar"
+    },
+    {
+      "code": "EC504",
+      "name": "Electromagnetic Theory",
+      "short_name": "EMT",
+      "faculty": "Prof. James Clerk Maxwell"
+    },
+    {
+      "code": "EC505",
+      "name": "Control Systems",
+      "short_name": "Control Sys",
+      "faculty": "Dr. Katsuhiko Ogata"
+    }
+  ],
+  "timetable": {
+    "Monday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EC501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EC502"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "EC503"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "EC504"
+      }
+    ],
+    "Tuesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EC502"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EC503"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "EC505"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "EC501"
+      }
+    ],
+    "Wednesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EC503"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EC504"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "EC501"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "EC505"
+      }
+    ],
+    "Thursday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EC504"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EC505"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "EC502"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "EC503"
+      }
+    ],
+    "Friday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EC505"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EC501"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "EC504"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "EC502"
+      }
+    ],
+    "Saturday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EC501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EC503"
+      }
+    ]
+  },
+  "holidays": [
+    "2026-10-02",
+    "2026-10-20",
+    "2026-11-01"
+  ]
+}

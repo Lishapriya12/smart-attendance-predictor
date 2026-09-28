@@ -1,0 +1,168 @@
+{
+  "section_id": "section_G",
+  "section_name": "Section G",
+  "department": "Electrical & Electronics",
+  "year": "3rd Year",
+  "semester": "5th Semester",
+  "subjects": [
+    {
+      "code": "EE501",
+      "name": "Power Systems",
+      "short_name": "Power Sys",
+      "faculty": "Dr. Charles Steinmetz"
+    },
+    {
+      "code": "EE502",
+      "name": "Electrical Machines II",
+      "short_name": "Machines",
+      "faculty": "Prof. Nikola Tesla"
+    },
+    {
+      "code": "EE503",
+      "name": "Control Systems",
+      "short_name": "Control",
+      "faculty": "Dr. Richard Bellman"
+    },
+    {
+      "code": "EE504",
+      "name": "Power Electronics",
+      "short_name": "Power Elec",
+      "faculty": "Prof. Muhammad Rashid"
+    },
+    {
+      "code": "EE505",
+      "name": "Signal Processing",
+      "short_name": "DSP",
+      "faculty": "Dr. Sanjit Mitra"
+    }
+  ],
+  "timetable": {
+    "Monday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EE501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EE502"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "EE503"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "EE504"
+      }
+    ],
+    "Tuesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EE502"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EE503"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "EE505"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "EE501"
+      }
+    ],
+    "Wednesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EE503"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EE504"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "EE501"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "EE505"
+      }
+    ],
+    "Thursday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EE504"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EE505"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "EE502"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "EE503"
+      }
+    ],
+    "Friday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EE505"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EE501"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "EE504"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "EE502"
+      }
+    ],
+    "Saturday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "EE501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "EE504"
+      }
+    ]
+  },
+  "holidays": [
+    "2026-10-02",
+    "2026-10-20",
+    "2026-11-01"
+  ]
+}

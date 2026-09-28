@@ -1,0 +1,204 @@
+{
+  "section_id": "section_A",
+  "section_name": "Section A",
+  "department": "Computer Science & Engineering",
+  "year": "3rd Year",
+  "semester": "5th Semester",
+  "subjects": [
+    {
+      "code": "CS501",
+      "name": "Java Programming",
+      "short_name": "Java",
+      "faculty": "Dr. Alan Turing"
+    },
+    {
+      "code": "CS502",
+      "name": "Database Management Systems",
+      "short_name": "DBMS",
+      "faculty": "Prof. Grace Hopper"
+    },
+    {
+      "code": "CS503",
+      "name": "Mathematics III",
+      "short_name": "Maths",
+      "faculty": "Dr. Carl Gauss"
+    },
+    {
+      "code": "CS504",
+      "name": "Computer Networks",
+      "short_name": "CN",
+      "faculty": "Prof. Vint Cerf"
+    },
+    {
+      "code": "CS505",
+      "name": "Web Technology",
+      "short_name": "Web Tech",
+      "faculty": "Dr. Tim Berners-Lee"
+    },
+    {
+      "code": "CS506",
+      "name": "Software Engineering",
+      "short_name": "SE",
+      "faculty": "Dr. Margaret Hamilton"
+    }
+  ],
+  "timetable": {
+    "Monday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS502"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS503"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CS504"
+      },
+      {
+        "period": 5,
+        "time": "14:15 - 15:15",
+        "subject_code": "CS505"
+      }
+    ],
+    "Tuesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS502"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS501"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS506"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CS503"
+      },
+      {
+        "period": 5,
+        "time": "14:15 - 15:15",
+        "subject_code": "CS504"
+      }
+    ],
+    "Wednesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS503"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS505"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS501"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CS502"
+      },
+      {
+        "period": 5,
+        "time": "14:15 - 15:15",
+        "subject_code": "CS506"
+      }
+    ],
+    "Thursday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS504"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS506"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS502"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CS501"
+      },
+      {
+        "period": 5,
+        "time": "14:15 - 15:15",
+        "subject_code": "CS503"
+      }
+    ],
+    "Friday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS505"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS504"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS503"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CS506"
+      },
+      {
+        "period": 5,
+        "time": "14:15 - 15:15",
+        "subject_code": "CS501"
+      }
+    ],
+    "Saturday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS502"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS505"
+      }
+    ]
+  },
+  "holidays": [
+    "2026-10-02",
+    "2026-10-20",
+    "2026-11-01"
+  ]
+}

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Profile | Smart Attendance Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="setup-body">
+  <div class="setup-container">
+    <div class="setup-card">
+      <div class="setup-header">
+        <div class="brand-logo">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>Smart Attendance Predictor</span>
+        </div>
+        <h1>Student Setup</h1>
+        <p>Select your class section from the official timetable dataset to configure your attendance predictor.</p>
+      </div>
+
+      <form id="setup-form">
+        <!-- STUDENT NAME & GENERAL INFO -->
+        <div class="form-grid" style="margin-bottom: 2rem;">
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label for="student_name"><i class="fa-solid fa-user"></i> Student Name</label>
+            <input type="text" id="student_name" placeholder="Enter your full name" value="Alex Morgan" required>
+          </div>
+        </div>
+
+        <!-- SECTION 1: SECTION SELECTION GRID (MAIN FOCUS) -->
+        <div class="section-selection-block">
+          <div class="section-title-box">
+            <h2>SELECT YOUR CLASS SECTION</h2>
+            <p>Choose your section to load your official college timetable</p>
+          </div>
+
+          <!-- 10 Section Cards Grid -->
+          <div class="section-cards-grid" id="section-cards-grid">
+            <div class="loading-spinner"><i class="fa-solid fa-circle-notch fa-spin"></i> Loading official sections...</div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: AUTO-FILLED ACADEMIC DETAILS -->
+        <div class="academic-details-card">
+          <h3><i class="fa-solid fa-shield-halved"></i> Selected Section Profile</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="dept_display"><i class="fa-solid fa-building-columns"></i> Department</label>
+              <input type="text" id="dept_display" placeholder="Select a section above..." readonly disabled>
+            </div>
+
+            <div class="form-group">
+              <label for="sem_display"><i class="fa-solid fa-layer-group"></i> Year & Semester</label>
+              <input type="text" id="sem_display" placeholder="Select a section above..." readonly disabled>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fa-solid fa-calendar-days"></i> Semester Window</label>
+              <input type="text" value="29 Aug 2026 – 29 Nov 2026" readonly disabled>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROMPT / NOTICE BEFORE SELECTION -->
+        <div id="unselected-prompt-banner" class="prompt-banner">
+          <i class="fa-solid fa-hand-pointer"></i>
+          <span>Please select your class section first to enter attendance details.</span>
+        </div>
+
+        <!-- SECTION 3: DYNAMIC SUBJECT ATTENDANCE INPUTS -->
+        <div id="subjects-container-wrapper" class="subjects-section" style="display: none;">
+          <div class="subjects-header-row">
+            <div>
+              <h3><i class="fa-solid fa-book-open"></i> Subject Attendance Inputs</h3>
+              <p class="section-desc">Enter conducted & attended class counts for your section's subjects. Current percentage is calculated automatically.</p>
+            </div>
+            <button type="button" id="btn-load-sample" class="btn btn-secondary btn-sm">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Load Preset Sample Data
+            </button>
+          </div>
+
+          <div class="subject-inputs-grid" id="subject-inputs-grid">
+            <!-- Dynamic Subject Cards Rendered Here -->
+          </div>
+        </div>
+
+        <div class="setup-footer">
+          <button type="submit" id="btn-save" class="btn btn-primary btn-large" disabled>
+            <i class="fa-solid fa-chart-line"></i> Save & Launch Dashboard
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let availableSections = [];
+    let selectedSectionId = null;
+    let loadedSubjectsData = [];
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      await fetchSections();
+
+      document.getElementById("btn-load-sample").addEventListener("click", () => {
+        applyPresetSampleValues();
+      });
+
+      document.getElementById("setup-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        saveAndLaunchDashboard();
+      });
+    });
+
+    async function fetchSections() {
+      try {
+        const res = await fetch("/api/sections");
+        const data = await res.json();
+        availableSections = data.sections || [];
+        renderSectionCards();
+
+        // Check if user previously saved a section in localStorage
+        const saved = JSON.parse(localStorage.getItem("smart_attendance_config") || "{}");
+        if (saved.section_id && availableSections.some(s => s.id === saved.section_id)) {
+          if (saved.student_name) document.getElementById("student_name").value = saved.student_name;
+          selectSection(saved.section_id, saved.subjects);
+        }
+      } catch (err) {
+        console.error("Error loading sections:", err);
+      }
+    }
+
+    function renderSectionCards() {
+      const grid = document.getElementById("section-cards-grid");
+      grid.innerHTML = "";
+
+      availableSections.forEach((sec, idx) => {
+        const card = document.createElement("div");
+        card.className = "section-choice-card";
+        card.dataset.id = sec.id;
+        card.id = `card-${sec.id}`;
+
+        card.innerHTML = `
+          <div class="card-check"><i class="fa-solid fa-circle-check"></i></div>
+          <div class="sec-card-name">${sec.name}</div>
+          <div class="sec-card-dept">${sec.department}</div>
+          <div class="sec-card-meta">${sec.year} • ${sec.semester}</div>
+          <div class="sec-card-badge">${sec.subject_count} Subjects</div>
+        `;
+
+        card.addEventListener("click", () => {
+          selectSection(sec.id);
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    async function selectSection(sectionId, prefillSubjects = null) {
+      if (!availableSections.some(s => s.id === sectionId)) return;
+
+      selectedSectionId = sectionId;
+
+      // 1. Highlight selected section card & update check marks
+      document.querySelectorAll(".section-choice-card").forEach(c => {
+        if (c.dataset.id === sectionId) {
+          c.classList.add("selected");
+        } else {
+          c.classList.remove("selected");
+        }
+      });
+
+      // 2. Fetch details for selected section ONLY
+      try {
+        const res = await fetch(`/api/section/${sectionId}`);
+        const data = await res.json();
+        const sec = data.section;
+
+        // Auto-fill read-only Dept, Year, Semester
+        document.getElementById("dept_display").value = sec.department;
+        document.getElementById("sem_display").value = `${sec.year} (${sec.semester})`;
+
+        // Hide prompt banner, show subject input section
+        document.getElementById("unselected-prompt-banner").style.display = "none";
+        document.getElementById("subjects-container-wrapper").style.display = "block";
+        document.getElementById("btn-save").disabled = false;
+
+        // Render subjects for selected section ONLY
+        renderSubjectInputCards(sec.subjects, prefillSubjects);
+
+      } catch (err) {
+        console.error("Error loading section details:", err);
+      }
+    }
+
+    function renderSubjectInputCards(subjectsList, prefillSubjects = null) {
+      const container = document.getElementById("subject-inputs-grid");
+      container.innerHTML = "";
+
+      const defaultSampleValues = {
+        "CS501": { conducted: 40, attended: 32 },
+        "CS502": { conducted: 40, attended: 31 },
+        "CS503": { conducted: 38, attended: 31 },
+        "CS504": { conducted: 40, attended: 29 },
+        "CS505": { conducted: 35, attended: 25 },
+        "CS506": { conducted: 40, attended: 36 }
+      };
+
+      subjectsList.forEach(sub => {
+        let cond = 30;
+        let att = 24;
+
+        if (prefillSubjects) {
+          const match = prefillSubjects.find(s => s.code === sub.code);
+          if (match) {
+            cond = match.conducted;
+            att = match.attended;
+          }
+        } else if (defaultSampleValues[sub.code]) {
+          cond = defaultSampleValues[sub.code].conducted;
+          att = defaultSampleValues[sub.code].attended;
+        }
+
+        const pct = cond > 0 ? ((att / cond) * 100).toFixed(1) : "100.0";
+
+        const card = document.createElement("div");
+        card.className = "subject-setup-card";
+        card.innerHTML = `
+          <div class="card-top">
+            <span class="sub-code">${sub.code}</span>
+            <span class="sub-faculty"><i class="fa-solid fa-chalkboard-user"></i> ${sub.faculty || "Faculty"}</span>
+          </div>
+          <h4 class="sub-title">${sub.name}</h4>
+          <div class="inputs-row">
+            <div class="input-field">
+              <label>Conducted</label>
+              <input type="number" min="1" max="200" class="inp-conducted" data-code="${sub.code}" value="${cond}" oninput="updateCardPct(this)">
+            </div>
+            <div class="input-field">
+              <label>Attended</label>
+              <input type="number" min="0" max="200" class="inp-attended" data-code="${sub.code}" value="${att}" oninput="updateCardPct(this)">
+            </div>
+            <div class="pct-badge-wrapper">
+              <label>Current</label>
+              <div class="setup-pct-badge ${pct < 75 ? 'danger' : (pct < 80 ? 'warning' : 'safe')}" id="badge-${sub.code}">${pct}%</div>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function updateCardPct(inputElem) {
+      const card = inputElem.closest(".subject-setup-card");
+      const cond = parseInt(card.querySelector(".inp-conducted").value) || 0;
+      const att = parseInt(card.querySelector(".inp-attended").value) || 0;
+      const code = card.querySelector(".inp-conducted").dataset.code;
+
+      let pct = 100.0;
+      if (cond > 0) {
+        pct = (Math.min(att, cond) / cond * 100).toFixed(1);
+      }
+
+      const badge = card.querySelector(`#badge-${code}`);
+      badge.textContent = `${pct}%`;
+      badge.className = `setup-pct-badge ${pct < 75 ? 'danger' : (pct < 80 ? 'warning' : 'safe')}`;
+    }
+
+    function applyPresetSampleValues() {
+      const cards = document.querySelectorAll(".subject-setup-card");
+      cards.forEach((card, idx) => {
+        const condInput = card.querySelector(".inp-conducted");
+        const attInput = card.querySelector(".inp-attended");
+
+        // Set realistic variations (some safe, some warning, some danger)
+        if (idx === 0) { condInput.value = 40; attInput.value = 32; } // 80%
+        else if (idx === 1) { condInput.value = 40; attInput.value = 31; } // 77.5%
+        else if (idx === 2) { condInput.value = 38; attInput.value = 31; } // 81.5%
+        else if (idx === 3) { condInput.value = 40; attInput.value = 29; } // 72.5% (Danger)
+        else { condInput.value = 35; attInput.value = 25; } // 71.4% (Danger)
+
+        updateCardPct(condInput);
+      });
+    }
+
+    function saveAndLaunchDashboard() {
+      if (!selectedSectionId) {
+        alert("Please select a class section first.");
+        return;
+      }
+
+      const name = document.getElementById("student_name").value.trim() || "Student";
+      const subjectsData = [];
+
+      const cards = document.querySelectorAll(".subject-setup-card");
+      cards.forEach(card => {
+        const code = card.querySelector(".inp-conducted").dataset.code;
+        const subName = card.querySelector(".sub-title").textContent;
+        const cond = parseInt(card.querySelector(".inp-conducted").value) || 0;
+        const att = parseInt(card.querySelector(".inp-attended").value) || 0;
+
+        subjectsData.push({
+          code: code,
+          name: subName,
+          conducted: Math.max(1, cond),
+          attended: Math.min(att, cond)
+        });
+      });
+
+      const config = {
+        student_name: name,
+        section_id: selectedSectionId,
+        subjects: subjectsData,
+        start_date: "2026-09-28",
+        target_date: "2026-11-29"
+      };
+
+      localStorage.setItem("smart_attendance_config", JSON.stringify(config));
+      window.location.href = "/dashboard";
+    }
+  </script>
+</body>
+</html>

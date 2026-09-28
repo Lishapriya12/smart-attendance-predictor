@@ -1,0 +1,168 @@
+{
+  "section_id": "section_I",
+  "section_name": "Section I",
+  "department": "Civil Engineering",
+  "year": "3rd Year",
+  "semester": "5th Semester",
+  "subjects": [
+    {
+      "code": "CE501",
+      "name": "Structural Analysis",
+      "short_name": "Structure",
+      "faculty": "Dr. Hardy Cross"
+    },
+    {
+      "code": "CE502",
+      "name": "Geotechnical Engineering",
+      "short_name": "Geotech",
+      "faculty": "Prof. Karl Terzaghi"
+    },
+    {
+      "code": "CE503",
+      "name": "Hydraulics & Water Resources",
+      "short_name": "Hydraulics",
+      "faculty": "Dr. Daniel Bernoulli"
+    },
+    {
+      "code": "CE504",
+      "name": "Concrete Technology",
+      "short_name": "Concrete",
+      "faculty": "Prof. Joseph Aspdin"
+    },
+    {
+      "code": "CE505",
+      "name": "Transportation Engineering",
+      "short_name": "Transport",
+      "faculty": "Dr. John Loudon McAdam"
+    }
+  ],
+  "timetable": {
+    "Monday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CE501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CE502"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CE503"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CE504"
+      }
+    ],
+    "Tuesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CE502"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CE503"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CE505"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CE501"
+      }
+    ],
+    "Wednesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CE503"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CE504"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CE501"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CE505"
+      }
+    ],
+    "Thursday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CE504"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CE505"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CE502"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CE503"
+      }
+    ],
+    "Friday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CE505"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CE501"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CE504"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CE502"
+      }
+    ],
+    "Saturday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CE501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CE503"
+      }
+    ]
+  },
+  "holidays": [
+    "2026-10-02",
+    "2026-10-20",
+    "2026-11-01"
+  ]
+}

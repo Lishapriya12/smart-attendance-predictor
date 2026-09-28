@@ -1,0 +1,168 @@
+{
+  "section_id": "section_H",
+  "section_name": "Section H",
+  "department": "Mechanical Engineering",
+  "year": "3rd Year",
+  "semester": "5th Semester",
+  "subjects": [
+    {
+      "code": "ME501",
+      "name": "Thermodynamics II",
+      "short_name": "Thermo",
+      "faculty": "Dr. Sadi Carnot"
+    },
+    {
+      "code": "ME502",
+      "name": "Fluid Mechanics",
+      "short_name": "Fluid Mech",
+      "faculty": "Prof. Osborne Reynolds"
+    },
+    {
+      "code": "ME503",
+      "name": "Kinematics of Machinery",
+      "short_name": "KOM",
+      "faculty": "Dr. Franz Reuleaux"
+    },
+    {
+      "code": "ME504",
+      "name": "Manufacturing Technology",
+      "short_name": "Mfg Tech",
+      "faculty": "Prof. Henry Ford"
+    },
+    {
+      "code": "ME505",
+      "name": "Heat Transfer",
+      "short_name": "Heat Tr",
+      "faculty": "Dr. Frank Incropera"
+    }
+  ],
+  "timetable": {
+    "Monday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "ME501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "ME502"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "ME503"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "ME504"
+      }
+    ],
+    "Tuesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "ME502"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "ME503"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "ME505"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "ME501"
+      }
+    ],
+    "Wednesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "ME503"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "ME504"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "ME501"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "ME505"
+      }
+    ],
+    "Thursday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "ME504"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "ME505"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "ME502"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "ME503"
+      }
+    ],
+    "Friday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "ME505"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "ME501"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "ME504"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "ME502"
+      }
+    ],
+    "Saturday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "ME501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "ME502"
+      }
+    ]
+  },
+  "holidays": [
+    "2026-10-02",
+    "2026-10-20",
+    "2026-11-01"
+  ]
+}

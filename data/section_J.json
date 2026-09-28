@@ -1,0 +1,204 @@
+{
+  "section_id": "section_J",
+  "section_name": "Section J",
+  "department": "Artificial Intelligence & Data Science",
+  "year": "3rd Year",
+  "semester": "5th Semester",
+  "subjects": [
+    {
+      "code": "AD501",
+      "name": "Machine Learning",
+      "short_name": "ML",
+      "faculty": "Dr. Andrew Ng"
+    },
+    {
+      "code": "AD502",
+      "name": "Deep Learning",
+      "short_name": "Deep L",
+      "faculty": "Prof. Yann LeCun"
+    },
+    {
+      "code": "AD503",
+      "name": "Data Mining & Visualization",
+      "short_name": "Data Mining",
+      "faculty": "Dr. Jiawei Han"
+    },
+    {
+      "code": "AD504",
+      "name": "Big Data Analytics",
+      "short_name": "Big Data",
+      "faculty": "Prof. Doug Cutting"
+    },
+    {
+      "code": "AD505",
+      "name": "Natural Language Processing",
+      "short_name": "NLP",
+      "faculty": "Dr. Christopher Manning"
+    },
+    {
+      "code": "AD506",
+      "name": "AI Ethics & Policy",
+      "short_name": "AI Ethics",
+      "faculty": "Dr. Timnit Gebru"
+    }
+  ],
+  "timetable": {
+    "Monday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "AD501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "AD502"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "AD503"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "AD504"
+      },
+      {
+        "period": 5,
+        "time": "14:15 - 15:15",
+        "subject_code": "AD505"
+      }
+    ],
+    "Tuesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "AD502"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "AD501"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "AD506"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "AD503"
+      },
+      {
+        "period": 5,
+        "time": "14:15 - 15:15",
+        "subject_code": "AD504"
+      }
+    ],
+    "Wednesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "AD503"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "AD505"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "AD501"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "AD502"
+      },
+      {
+        "period": 5,
+        "time": "14:15 - 15:15",
+        "subject_code": "AD506"
+      }
+    ],
+    "Thursday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "AD504"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "AD506"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "AD502"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "AD501"
+      },
+      {
+        "period": 5,
+        "time": "14:15 - 15:15",
+        "subject_code": "AD503"
+      }
+    ],
+    "Friday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "AD505"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "AD504"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "AD503"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "AD506"
+      },
+      {
+        "period": 5,
+        "time": "14:15 - 15:15",
+        "subject_code": "AD501"
+      }
+    ],
+    "Saturday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "AD501"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "AD502"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "AD505"
+      }
+    ]
+  },
+  "holidays": [
+    "2026-10-02",
+    "2026-10-20",
+    "2026-11-01"
+  ]
+}

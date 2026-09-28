@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Attendance Predictor | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <!-- Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="brand">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Smart Attendance</span>
+        <span class="badge-beta">PREDICTOR</span>
+      </div>
+    </div>
+    
+    <div class="nav-right">
+      <div class="user-pill">
+        <i class="fa-solid fa-circle-user"></i>
+        <span id="user-display-name">Alex Morgan</span>
+        <span class="sec-badge" id="user-sec-badge">Section A</span>
+      </div>
+      <a href="/setup" class="btn btn-outline-sm"><i class="fa-solid fa-sliders"></i> Change Setup</a>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+
+    <!-- SEMESTER & PLANNING HEADER BAR -->
+    <section class="planner-header-card">
+      <div class="planner-top-row">
+        <div class="date-info-box">
+          <div class="today-badge">
+            <i class="fa-solid fa-calendar-day"></i> Today: <strong id="lbl-today-date">28 Sep 2026</strong>
+          </div>
+          <div class="semester-period">
+            <span>Semester Window: <strong>29 Aug 2026</strong> – <strong>29 Nov 2026</strong></span>
+          </div>
+        </div>
+
+        <div class="future-picker-box">
+          <label for="inp-future-date"><i class="fa-solid fa-clock-rotate-left"></i> Plan attendance until:</label>
+          <input type="date" id="inp-future-date" min="2026-08-29" max="2026-11-29" value="2026-11-29">
+        </div>
+      </div>
+
+      <!-- SEMESTER PROGRESS BAR -->
+      <div class="semester-progress-wrapper">
+        <div class="progress-labels">
+          <span><i class="fa-solid fa-flag"></i> 29 Aug (Start)</span>
+          <span id="lbl-sem-days-passed">Day 31 of 92</span>
+          <span><i class="fa-solid fa-flag-checkered"></i> 29 Nov (End)</span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="sem-progress-fill" style="width: 33.7%;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🚨 IRREVERSIBLE DETENTION WARNING BANNER -->
+    <div id="detention-alert-banner" class="alert-banner alert-detention" style="display: none;">
+      <div class="alert-icon">🚨</div>
+      <div class="alert-content">
+        <h3>IRREVERSIBLE DETENTION WARNING</h3>
+        <p class="alert-msg">Your attendance cannot mathematically recover to the required 75% before the selected date, even if you attend every remaining class.</p>
+        <div class="detention-details-grid" id="detention-details-grid">
+          <!-- Dynamic Detention Cards -->
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI SUMMARY CARDS GRID -->
+    <section class="kpi-grid">
+      <div class="kpi-card overall-card">
+        <div class="kpi-header">
+          <span>Overall Attendance</span>
+          <i class="fa-solid fa-chart-pie kpi-icon"></i>
+        </div>
+        <div class="kpi-value-row">
+          <h2 id="kpi-overall-pct">--%</h2>
+          <span class="kpi-badge" id="kpi-overall-badge">Safe</span>
+        </div>
+        <p class="kpi-subtext" id="kpi-overall-sub">Total Conducted vs Attended</p>
+      </div>
+
+      <div class="kpi-card risk-card">
+        <div class="kpi-header">
+          <span>Subjects at Risk</span>
+          <i class="fa-solid fa-triangle-exclamation kpi-icon warning-icon"></i>
+        </div>
+        <div class="kpi-value-row">
+          <h2 id="kpi-risk-count">0</h2>
+          <span class="sub-label">Below 75% or Low Buffer</span>
+        </div>
+        <p class="kpi-subtext" id="kpi-risk-sub">Requires immediate recovery</p>
+      </div>
+
+      <div class="kpi-card remaining-card">
+        <div class="kpi-header">
+          <span>Timetable Classes Left</span>
+          <i class="fa-solid fa-calendar-days kpi-icon"></i>
+        </div>
+        <div class="kpi-value-row">
+          <h2 id="kpi-rem-classes">--</h2>
+          <span class="sub-label">Scheduled in Timetable</span>
+        </div>
+        <p class="kpi-subtext" id="kpi-rem-sub">Calculated from Section Timetable</p>
+      </div>
+
+      <div class="kpi-card miss-card">
+        <div class="kpi-header">
+          <span>Safe Misses Available</span>
+          <i class="fa-solid fa-umbrella-beach kpi-icon success-icon"></i>
+        </div>
+        <div class="kpi-value-row">
+          <h2 id="kpi-safe-misses">--</h2>
+          <span class="sub-label">Total Missable Classes</span>
+        </div>
+        <p class="kpi-subtext">Without dropping below 75% safety target</p>
+      </div>
+    </section>
+
+    <!-- MAIN SUBJECT CARDS GRID -->
+    <section class="section-block">
+      <div class="section-header-title">
+        <h2><i class="fa-solid fa-book-bookmark"></i> Subject Attendance Status</h2>
+        <span class="sub-header-tag">Section Timetable Based Calculations</span>
+      </div>
+
+      <div class="subject-cards-grid" id="subject-cards-grid">
+        <!-- Subject cards loaded dynamically -->
+      </div>
+    </section>
+
+    <!-- CHARTS SECTION -->
+    <section class="section-block">
+      <div class="section-header-title">
+        <h2><i class="fa-solid fa-chart-line"></i> Attendance Visual Analytics</h2>
+      </div>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Subject Attendance Overview</h3>
+            <span class="chart-tag">Current vs 75% Target</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="chart-subject-bar"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Attendance Forecast Trend</h3>
+            <span class="chart-tag">Projected Path to Nov 29</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="chart-forecast-line"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card chart-card-sm">
+          <div class="chart-header">
+            <h3>Risk Distribution</h3>
+            <span class="chart-tag">Status Breakdown</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="chart-risk-donut"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE TOOLS TABS SECTION -->
+    <section class="section-block tools-section">
+      <div class="tools-tab-header">
+        <button class="tab-btn active" data-tab="tab-heatmap"><i class="fa-solid fa-calendar-week"></i> Attendance Heatmap</button>
+        <button class="tab-btn" data-tab="tab-leave"><i class="fa-solid fa-plane-departure"></i> Smart Leave Planner</button>
+        <button class="tab-btn" data-tab="tab-whatif"><i class="fa-solid fa-vial"></i> What-If Simulator</button>
+        <button class="tab-btn" data-tab="tab-digitaltwin"><i class="fa-solid fa-network-wired"></i> Digital Twin</button>
+        <button class="tab-btn" data-tab="tab-recovery"><i class="fa-solid fa-stairs"></i> Recovery Path & Streak</button>
+      </div>
+
+      <div class="tab-content-container">
+
+        <!-- TAB 1: ATTENDANCE HEATMAP -->
+        <div class="tab-content active" id="tab-heatmap">
+          <div class="tab-pane-card">
+            <div class="pane-header">
+              <h3>🗓️ Calendar Attendance Heatmap</h3>
+              <p>Visual map of upcoming timetabled classes. Click any date to view scheduled periods.</p>
+            </div>
+            <div class="calendar-legend">
+              <span class="legend-item"><span class="dot dot-class"></span> Scheduled Class</span>
+              <span class="legend-item"><span class="dot dot-holiday"></span> College Holiday</span>
+              <span class="legend-item"><span class="dot dot-sunday"></span> Sunday</span>
+            </div>
+            <div class="heatmap-grid" id="heatmap-grid">
+              <!-- Calendar days rendered here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: SMART LEAVE PLANNER -->
+        <div class="tab-content" id="tab-leave">
+          <div class="tab-pane-card">
+            <div class="pane-header">
+              <h3>🏖️ Smart Leave Planner (Leave Simulator)</h3>
+              <p>Simulate planned leaves or ODs to check impact against your section timetable.</p>
+            </div>
+            <form id="form-leave-sim" class="leave-form">
+              <div class="leave-form-grid">
+                <div class="form-group">
+                  <label><i class="fa-solid fa-calendar"></i> Leave Start Date</label>
+                  <input type="date" id="inp-leave-start" value="2026-09-29" min="2026-08-29" max="2026-11-29">
+                </div>
+                <div class="form-group">
+                  <label><i class="fa-solid fa-calendar"></i> Leave End Date</label>
+                  <input type="date" id="inp-leave-end" value="2026-10-01" min="2026-08-29" max="2026-11-29">
+                </div>
+                <div class="form-group">
+                  <label><i class="fa-solid fa-id-card"></i> Leave Type</label>
+                  <select id="inp-leave-type">
+                    <option value="Normal Leave">Normal Leave (Absent)</option>
+                    <option value="On-Duty (OD)">On-Duty (OD Credit)</option>
+                    <option value="Medical Leave">Medical Leave (Excused)</option>
+                  </select>
+                </div>
+                <div class="form-group btn-align">
+                  <button type="button" id="btn-run-leave-sim" class="btn btn-primary"><i class="fa-solid fa-play"></i> Simulate Leave</button>
+                </div>
+              </div>
+            </form>
+
+            <div id="leave-sim-results" class="sim-results-wrapper" style="display: none;">
+              <!-- Simulation Output Loaded Dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: WHAT-IF SIMULATOR -->
+        <div class="tab-content" id="tab-whatif">
+          <div class="tab-pane-card">
+            <div class="pane-header">
+              <h3>🧪 What-If Attendance Simulator</h3>
+              <p>Test hypothetical scenarios without altering your actual attendance records.</p>
+            </div>
+
+            <div class="scenario-buttons-row">
+              <button class="btn btn-scenario" onclick="runWhatIf('attend_all')"><i class="fa-solid fa-circle-check"></i> What if I attend ALL remaining classes?</button>
+              <button class="btn btn-scenario" onclick="runWhatIf('attend_mon_tue_only')"><i class="fa-solid fa-calendar-days"></i> What if I attend Mon & Tue classes only?</button>
+              <button class="btn btn-scenario" onclick="openMissClassesModal()"><i class="fa-solid fa-user-slash"></i> What if I miss N classes in a subject?</button>
+            </div>
+
+            <div id="whatif-sim-results" class="sim-results-wrapper" style="display: none; margin-top: 20px;">
+              <!-- What-If Output Loaded Dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: DIGITAL TWIN -->
+        <div class="tab-content" id="tab-digitaltwin">
+          <div class="tab-pane-card">
+            <div class="pane-header">
+              <h3>♊ Attendance Digital Twin Simulation</h3>
+              <p>Side-by-side comparison model of your attendance across 4 virtual future paths.</p>
+            </div>
+
+            <div class="digital-twin-grid" id="digital-twin-grid">
+              <!-- Twin cards loaded dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: RECOVERY PATH & STREAK -->
+        <div class="tab-content" id="tab-recovery">
+          <div class="tab-pane-card">
+            <div class="pane-header">
+              <h3>🚀 Recovery Path & Personal Streak Tracker</h3>
+              <p>Step-by-step required classes to reach 75%, 80%, 85%, and 90% milestones.</p>
+            </div>
+
+            <div class="recovery-path-grid" id="recovery-path-grid">
+              <!-- Recovery milestones loaded dynamically -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 💬 FLOATING AI ATTENDANCE ADVISOR CHATBOT -->
+  <div class="chatbot-floating-trigger" id="chatbot-trigger">
+    <div class="trigger-icon"><i class="fa-solid fa-robot"></i></div>
+    <span class="trigger-text">💬 Ask Attendance Advisor</span>
+  </div>
+
+  <!-- CHATBOT WINDOW OVERLAY -->
+  <div class="chatbot-window" id="chatbot-window" style="display: none;">
+    <div class="chat-header">
+      <div class="chat-title">
+        <i class="fa-solid fa-robot"></i>
+        <div>
+          <h4>AI Attendance Advisor</h4>
+          <span class="online-indicator">🟢 Timetable Connected</span>
+        </div>
+      </div>
+      <button class="chat-close-btn" id="chat-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="chat-body" id="chat-body">
+      <div class="chat-msg bot-msg">
+        <div class="msg-avatar"><i class="fa-solid fa-robot"></i></div>
+        <div class="msg-bubble">
+          Hello! I am your AI Attendance Advisor. Ask me anything about your timetable, safe leaves, 90% target, or recovery steps!
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-suggestions">
+      <span class="suggestion-pill" onclick="sendQuickPrompt('If I take 3 days leave starting tomorrow, will any subject drop below 75%?')">🏖️ 3-day leave impact?</span>
+      <span class="suggestion-pill" onclick="sendQuickPrompt('How many classes can I safely miss across all subjects?')">🛡️ How many classes can I miss?</span>
+      <span class="suggestion-pill" onclick="sendQuickPrompt('Can I reach 90% target before November?')">🎯 Can I reach 90%?</span>
+      <span class="suggestion-pill" onclick="sendQuickPrompt('How do I recover subjects that are in danger?')">🚨 How to recover danger subjects?</span>
+    </div>
+
+    <form id="chat-form" class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Type your attendance question..." autocomplete="off" required>
+      <button type="submit" class="btn-send"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+  </div>
+
+  <!-- DATE CLASSES MODAL -->
+  <div class="modal-overlay" id="date-classes-modal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-date-title"><i class="fa-solid fa-calendar-day"></i> Classes on Date</h3>
+        <button class="modal-close" onclick="closeDateModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-date-body">
+        <!-- Class list rendered here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="/static/js/dashboard.js"></script>
+  <script src="/static/js/charts.js"></script>
+  <script src="/static/js/simulator.js"></script>
+  <script src="/static/js/chatbot.js"></script>
+
+</body>
+</html>

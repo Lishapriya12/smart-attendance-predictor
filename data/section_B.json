@@ -1,0 +1,168 @@
+{
+  "section_id": "section_B",
+  "section_name": "Section B",
+  "department": "Computer Science & Engineering",
+  "year": "2nd Year",
+  "semester": "3rd Semester",
+  "subjects": [
+    {
+      "code": "CS301",
+      "name": "Data Structures",
+      "short_name": "DS",
+      "faculty": "Prof. Donald Knuth"
+    },
+    {
+      "code": "CS302",
+      "name": "Digital Logic Design",
+      "short_name": "DLD",
+      "faculty": "Dr. Claude Shannon"
+    },
+    {
+      "code": "CS303",
+      "name": "Discrete Mathematics",
+      "short_name": "Discrete Math",
+      "faculty": "Dr. Paul Erd\u0151s"
+    },
+    {
+      "code": "CS304",
+      "name": "Object Oriented C++",
+      "short_name": "C++",
+      "faculty": "Dr. Bjarne Stroustrup"
+    },
+    {
+      "code": "CS305",
+      "name": "Computer Organization",
+      "short_name": "COA",
+      "faculty": "Prof. John von Neumann"
+    }
+  ],
+  "timetable": {
+    "Monday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS301"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS302"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS303"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CS304"
+      }
+    ],
+    "Tuesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS304"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS305"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS301"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CS302"
+      }
+    ],
+    "Wednesday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS302"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS303"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS305"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CS301"
+      }
+    ],
+    "Thursday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS303"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS304"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS301"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CS305"
+      }
+    ],
+    "Friday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS305"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS301"
+      },
+      {
+        "period": 3,
+        "time": "11:15 - 12:15",
+        "subject_code": "CS302"
+      },
+      {
+        "period": 4,
+        "time": "13:15 - 14:15",
+        "subject_code": "CS304"
+      }
+    ],
+    "Saturday": [
+      {
+        "period": 1,
+        "time": "09:00 - 10:00",
+        "subject_code": "CS301"
+      },
+      {
+        "period": 2,
+        "time": "10:00 - 11:00",
+        "subject_code": "CS303"
+      }
+    ]
+  },
+  "holidays": [
+    "2026-10-02",
+    "2026-10-20",
+    "2026-11-01"
+  ]
+}
